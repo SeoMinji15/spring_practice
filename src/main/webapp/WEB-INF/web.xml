@@ -29,5 +29,20 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
+		<!-- 한글 깨짐 방지 인코딩(filter, filter-mapping) -->
+	<filter>
+		<filter-name>encodingFilter</filter-name> <!-- 스프링에서 인코딩 필터 제공해줌 -->
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<!-- 모든 요청들이 인토딩 필터를 커쳐가도록 맵핑 -->
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>
